@@ -10,38 +10,69 @@ class TrackMuon
     static Random randGen = new Random();
 
     static final double muonmass = 106.;
-
-    private static void lookAtThisMuon(int nsteps, double [][] track, double finalE)
+    
+     private static void main (String [] args ) throws IOException
     {
-	double xlast,ylast;
-	xlast = track  [nsteps-1][0];
-	ylast = track  [nsteps-1][1];
-	screen.println(" last (x,y) of track =  ( " + xlast + " , " + ylast + ")" );
-	screen.println(" energy of muon as it leaves the material = " + finalE +"  MeV");
+    	// set the seed for the random number generator so it always
+    	// produces the same sequence of random numbers
+    	randGen.setSeed(7894694); 
+    
+    	screen.println("Type in starting energy in MeV ");
+    	double startEnergy = new Double(keyboard.readLine() ).doubleValue();
+    	screen.println("Type in a step size in cm ");
+    	double stepSize = new Double(keyboard.readLine() ).doubleValue();
+    	screen.println("Type in the thickness of iron, cm "); 
+    	double ironThickness = new Double(keyboard.readLine()).doubleValue();
+    	screen.println("Type in the number of muons to track ");
+        int numberOfMuons = new Integer(keyboard.readLine() ).intValue();
+        
+        return;
+   }
+   
+   public static double gauss( double xmean, double sigma )//obtains random number values generated, that have a Gaussian distribution
+    {
+        // Return a random number with a gaussian distribution  
+        double newGauss, sum;
+        sum=0;
+        
+        for (int n=0 ; n<=11; n++)
+        {
+            sum=sum + value.nextDouble();// use the class Random to make a number
+        }
+        
+        newGauss = xmean + sigma*(sum -6);
+        return newGauss;
+    }
+
+   private static void lookAtThisMuon(int nsteps, double [][] track, double finalE)
+   {
+	 double xlast,ylast;
+	 xlast = track  [nsteps-1][0];
+	 y last = track  [nsteps-1][1];
+	 screen.println(" last (x,y) of track =  ( " + xlast + " , " + ylast + ")" );
+	 screen.println(" energy of muon as it leaves the material = " + finalE +"  MeV");
 	
+	 if (xlast >= ironThickness)
+	 {
+	    exitE.fillh(finalE); //histogram storing data of the exit energy
+	    exitY.fillh(ylast);
+	   }
 	return;
     }
     
-    public static void main (String [] args ) throws IOException
-    {
-	// set the seed for the random number generator so it always
-	// produces the same sequence of random numbers
-	randGen.setSeed(7894694); 
-
-	screen.println("Type in starting energy in MeV ");
-	double startEnergy = new Double(keyboard.readLine() ).doubleValue();
-	screen.println("Type in a step size in cm ");
-	double stepSize = new Double(keyboard.readLine() ).doubleValue();
-	screen.println("Type in the thickness of iron, cm "); 
-	double ironThickness = new Double(keyboard.readLine()).doubleValue();
-	screen.println("Type in the number of muons to track ");
-        int numberOfMuons = new Integer(keyboard.readLine() ).intValue();
+  
+ 
 
 	// Eloss class: ...
 	EnergyLoss ironEloss = new EnergyLoss(
 	//EnergyLoss ironEloss = new EnergyLoss(...);
 	// MCS class: ...
 	//MCS ironMS = new MCS(...);
+   public static void main (String [] args) throws IOException
+	{
+	  EnergyLoss ironEloss = new EnergyLoss(26,55.845,30,7.87);/sets up code to make use of 
+	  MCS ironMS = new MCS(7.87,26,88.845,1.797)
+
 
 	// Define position and resolution of counters that detect the muon as it 
 	// exits the iron, all length units are cm
@@ -49,24 +80,24 @@ class TrackMuon
 	final double xc2 =ironThickness + 20;
 	final double counterYcoordResolution = 0.1; // sigma of y coord resolution in cm.
 
-	Histogram exitE = new Histogram(50, 0, startEnergy);
+	static Histogram exitE = new Histogram(50, 0, startEnergy); 
 
 	final int nmax = 200; // maximum allowed number of steps before we stop following a muon.
 
 	// Start tracking each muon
-	for (int n = 0; n < numberOfMuons; n++) {
+	for (int n =0; n < numberOfMuons; n++) {
 	    // Define a 2D array to store the (x,y) pairs generated as track is followed.
 	    // allow enough space to store the hit positions on the counters.
 	    double [][] trackOfMuon = new double[nmax+2][2];
 
 	    double muonEnergy = startEnergy;
          
-	    double x = 0; //Set the initial starting position.
-	    double y = 0;
-	    int nsteps = 0;
+	    double x = 0; // Set the initial starting position of muon
+	    double y = 0; //
+	    int nsteps = 1; //counts the number of steps
 	    double theta = 0; // muon starts out parallel to x-axis
-
 	    screen.println("Start tracking muon  " + n + " , energy =  " + muonEnergy);
+	    
 	    while (x < ironThickness && nsteps < nmax)  { // Note the 2 conditions here to avoid infinite loop
 		// Step is the direction in the x-direction
 		double step = Math.min(stepSize, ironThickness-x);
@@ -77,6 +108,7 @@ class TrackMuon
 		// double theta0 = ...
 		// smear theta by a Gaussian random angle with mean 0 and sigma=thetaT
 		// ...
+		theta = thaeta + gauss(0,thetaT)
 
 		// If muon travels at angle theta, amount of material traversed is is d = step/cos(theta) 
 		double d = step/Math.cos(theta);
