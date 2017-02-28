@@ -38,6 +38,7 @@ class TrackMuon
         int numberOfMuons = new Integer(keyboard.readLine() ).intValue();
 
 	// Eloss class: ...
+	EnergyLoss ironEloss = new EnergyLoss(
 	//EnergyLoss ironEloss = new EnergyLoss(...);
 	// MCS class: ...
 	//MCS ironMS = new MCS(...);
