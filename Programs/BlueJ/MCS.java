@@ -1,3 +1,10 @@
+/* Author: Zachary Humphreys; ID:200951438
+*   Intructions: 
+*   2 Sets of inputs are required for all of the code to function.
+*   1)The constructor requires 4 material arguments (in order): density, atomic number, atomic mass, material thickness
+*   2)The theta methods require addition particle arguments (in order): charge (Coulombs), ratio of veloctity to speed of light, momentum (MeV)
+*/
+
 import java.io.*;
 
 class MCS
@@ -12,7 +19,7 @@ class MCS
     private double material_A;
     private double material_thickness;  //cm
     
-    //Constructor: suffixes: p=particle, m= material
+    //Constructor
     public MCS(double in_density, int in_Z, double in_A, double in_thickness)
     {
         material_density = in_density;
