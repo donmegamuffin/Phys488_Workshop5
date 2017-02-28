@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=inp_beta\ inp_momentum\ inp_charge\ inm_density\ inm_Z\ inm_A\ inm_thickness
+comment0.target=MCS(double,\ double,\ double,\ double,\ int,\ double,\ double)
+comment1.params=
+comment1.target=double\ X_0()
+numComments=2
