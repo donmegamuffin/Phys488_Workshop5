@@ -1,7 +1,7 @@
 /* Author: Zachary Humphreys; ID:200951438
 *   Intructions: 
 *   2 Sets of inputs are required for all of the code to function.
-*   1)The constructor requires 4 material arguments (in order): density, atomic number, atomic mass, material thickness
+*   1)The constructor requires 4 material arguments (in order): atomic number, atomic mass, density, material thickness
 *   2)The theta/sigma methods require addition particle argument: momentum (MeV)
 */
 
@@ -23,7 +23,7 @@ class MCS
     private double particle_mass = 106;                     //MeV
     
     //Constructor
-    public MCS(double in_density, int in_Z, double in_A, double in_thickness)
+    public MCS(int in_Z, double in_A, double in_density, double in_thickness)
     {
         material_density = in_density;
         material_Z = in_Z;

@@ -1,6 +1,6 @@
 #BlueJ class context
-comment0.params=in_density\ in_Z\ in_A\ in_thickness
-comment0.target=MCS(double,\ int,\ double,\ double)
+comment0.params=in_Z\ in_A\ in_density\ in_thickness
+comment0.target=MCS(int,\ double,\ double,\ double)
 comment1.params=
 comment1.target=double\ X_0()
 comment2.params=particle_momentum
