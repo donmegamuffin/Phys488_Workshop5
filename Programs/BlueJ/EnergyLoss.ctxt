@@ -1,2 +1,6 @@
 #BlueJ class context
-numComments=0
+comment0.params=Z\ A\ p
+comment0.target=EnergyLoss(double,\ double,\ double)
+comment1.params=m
+comment1.target=double\ getenergyloss(double)
+numComments=2
