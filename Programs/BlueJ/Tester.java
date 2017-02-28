@@ -11,5 +11,6 @@ class Tester
     {
         MCS MCS_Test = new MCS(1.,1.,1.,7.87,26,55.845,1.);
         System.out.println("X_0 is:\t"+ MCS_Test.X_0());
+        System.out.println("theta_0 is:\t" +MCS_Test.theta_0());
     }
 }

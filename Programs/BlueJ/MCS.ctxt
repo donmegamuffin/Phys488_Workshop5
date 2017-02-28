@@ -3,4 +3,6 @@ comment0.params=inp_beta\ inp_momentum\ inp_charge\ inm_density\ inm_Z\ inm_A\ i
 comment0.target=MCS(double,\ double,\ double,\ double,\ int,\ double,\ double)
 comment1.params=
 comment1.target=double\ X_0()
-numComments=2
+comment2.params=
+comment2.target=double\ theta_0()
+numComments=3
