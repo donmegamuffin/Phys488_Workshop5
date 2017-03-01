@@ -30,7 +30,7 @@ class TrackMuon
     
      if (xlast >= ironThickness) //creates histogram if muon leaves the material
      {
-        exitE.fill(finalE); //histogram storing data of the exit energy
+        exitE.fill(finalE);//histogram storing data of the exit energy
         exitY.fill(ylast);
        }
     return;
@@ -54,7 +54,7 @@ class TrackMuon
         int numberOfMuons = new Integer(keyboard.readLine() ).intValue();
         
         EnergyLoss ironEloss = new EnergyLoss(26,55.845,7.87);//sets up code to make use of 
-        MCS ironMS = new MCS(7.87,26,55.845,ironThickness);
+        MCS ironMS = new MCS(26,55.845,7.87,ironThickness);
         
         
     // Define position and resolution of counters that detect the muon as it 
@@ -69,10 +69,10 @@ class TrackMuon
         
 
         Histogram exitE = new Histogram(50, 0, startEnergy); //muon exit from iron
-        Histogram exitY = new Histogram(50, -0.5,0.5);
-        Histogram detector1 = new Histogram(50,-1.5,1.5);
-        Histogram detector2 = new Histogram(50,-1.5,1.5);
-        Histogram detector3 = new Histogram(50,-1.5,1.5);
+        Histogram exitY = new Histogram(50, -1,1);
+        Histogram detector1 = new Histogram(100,-50,50);
+        Histogram detector2 = new Histogram(100,-50,50);
+        Histogram detector3 = new Histogram(100,-50,50);
 
     
 
@@ -117,7 +117,7 @@ class TrackMuon
         double xnew = x + step ; 
         double ynew = y + d*Math.sin(theta); 
 
-        screen.println("tracking.. nsteps, x, y = " + nsteps + "  " + xnew + "  " + ynew);
+        //screen.println("tracking.. nsteps, x, y = " + nsteps + "  " + xnew + "  " + ynew);
         // Store these co-ordinates
         trackOfMuon[nsteps][0] = xnew;
         trackOfMuon[nsteps][1] = ynew;
