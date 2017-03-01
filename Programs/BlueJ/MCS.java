@@ -43,7 +43,7 @@ class MCS
     {
         double x_ratio = material_thickness/X_0();
         //Calculates the velocity as speed of light fractions
-        double particle_beta = (particle_momentum/(Math.pow(particle_momentum,2)+Math.pow(particle_mass,2)));
+        double particle_beta = (particle_momentum/Math.sqrt((Math.pow(particle_momentum,2)+Math.pow(particle_mass,2))));
         double theta_0 = ((Rydberg_constant*particle_charge*Math.sqrt(x_ratio))*(1+0.038*Math.log(x_ratio))/(particle_beta*particle_momentum));
         return theta_0;
     }
