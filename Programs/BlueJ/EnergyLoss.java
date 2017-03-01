@@ -14,13 +14,15 @@ class EnergyLoss
     double charge = 1;          //Coulombs
     double mass = 106;          // MeV
         
-    public EnergyLoss(int Z, double A, double p) {
+    public EnergyLoss(int Z, double A, double p) 
+    {
         AtomicNumber = Z;
         AtomicMass = A;
         density = p;       
     }
     
-    public double getEnergyLoss(double m){
+    public double getEnergyLoss(double m)
+    {
         double momentum = m;                                                       //MeV
         double energy = Math.pow((Math.pow(momentum,2)+Math.pow(mass,2)),0.5);     //energy of muon //MeV      
         double Beta2 = Math.pow((momentum/energy),2);                              //Velocity as fraction of speed of light squared
