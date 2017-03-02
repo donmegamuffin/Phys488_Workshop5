@@ -15,25 +15,13 @@ class TrackMuon
 
     static final double muonmass = 106.;
     
+       
  
-   
-   public static double gauss( double xmean, double sigma )//obtains random number values generated, that have a Gaussian distribution
-    {
-        // Return a random number with a gaussian distribution  
-        double newGauss, sum;
-        sum=0;
-        
-        for (int n=0 ; n<=11; n++)
-        {
-            sum=sum + randGen.nextDouble();// use the class Random to make a number
-        }
-        
-        newGauss = xmean + sigma*(sum -6);
-        return newGauss;
-    }
-
    private static void lookAtThisMuon(int nsteps, double [][] track, double finalE)
    {
+      Histogram exitE = new Histogram(50, 0, startEnergy); //muon exit from iron
+      Histogram exitY = new Histogram(50, -0.5,0.5);
+       
      double xlast,ylast;
      xlast = track  [nsteps-1][0];
      ylast = track  [nsteps-1][1];
@@ -42,8 +30,8 @@ class TrackMuon
     
      if (xlast >= ironThickness) //creates histogram if muon leaves the material
      {
-        exitE.fillh(finalE); //histogram storing data of the exit energy
-        exitY.fillh(ylast);
+        exitE.fill(finalE);//histogram storing data of the exit energy
+        exitY.fill(ylast);
        }
     return;
     }
@@ -65,25 +53,26 @@ class TrackMuon
         screen.println("Type in the number of muons to track ");
         int numberOfMuons = new Integer(keyboard.readLine() ).intValue();
         
-        EnergyLoss ironEloss = new EnergyLoss(26,55.845,30,7.87);//sets up code to make use of 
-        MCS ironMS = new MCS(7.87,26,88.845,1.797);
+        EnergyLoss ironEloss = new EnergyLoss(26,55.845,7.87);//sets up code to make use of 
+        MCS ironMS = new MCS(26,55.845,7.87,ironThickness);
         
         
     // Define position and resolution of counters that detect the muon as it 
     // exits the iron, all length units are cm
         final double xc1= ironThickness + 10; // x - coord of first counter after the iron
         final double xc2 =ironThickness + 20;
+        final double xc3 =ironThickness + 30;
         final double counterYcoordResolution = 0.1; // sigma of y coord resolution in cm.
     
-        int nsteps; //counts the number of steps
+       // int nsteps; //counts the number of steps
         final int nmax = 200; // maximum allowed number of steps before we stop following a muon
         
 
         Histogram exitE = new Histogram(50, 0, startEnergy); //muon exit from iron
-        Histogram exitY = new Histogram(50, -0.5,0.5);
-        Histogram detector1 = new Histogram(50,-1.5,1.5);
-        Histogram detector2 = new Histogram(50,-1.5,1.5);
-        Histogram detetor3 = new Histogram(50,-1.5,1.5);
+        Histogram exitY = new Histogram(50, -1,1);
+        Histogram detector1 = new Histogram(100,-50,50);
+        Histogram detector2 = new Histogram(100,-50,50);
+        Histogram detector3 = new Histogram(100,-50,50);
 
     
 
@@ -112,7 +101,7 @@ class TrackMuon
         // double theta0 = ...
         // smear theta by a Gaussian random angle with mean 0 and sigma=thetaT
         // ...
-        theta = thaeta + gauss(0,thetaT);
+        theta = theta + randGen.nextGaussian()*counterYcoordResolution;
 
         // If muon travels at angle theta, amount of material traversed is is d = step/cos(theta) 
         double d = step/Math.cos(theta);
@@ -128,7 +117,7 @@ class TrackMuon
         double xnew = x + step ; 
         double ynew = y + d*Math.sin(theta); 
 
-        screen.println("tracking.. nsteps, x, y = " + nsteps + "  " + xnew + "  " + ynew);
+        //screen.println("tracking.. nsteps, x, y = " + nsteps + "  " + xnew + "  " + ynew);
         // Store these co-ordinates
         trackOfMuon[nsteps][0] = xnew;
         trackOfMuon[nsteps][1] = ynew;
@@ -151,18 +140,18 @@ class TrackMuon
         yhitOnC1 += randGen.nextGaussian() * counterYcoordResolution;
         double yhitOnC2 = (xc2 - x)*Math.tan(theta) + y;
         yhitOnC2 += randGen.nextGaussian() * counterYcoordResolution;
-        double yhitonC3 = (xc3 - x)*Math.tan(theta) +y;
-        yhitOnC2 += rand.Gen.nextGaussian() * counterYcoordResolution;
+        double yhitOnC3 = (xc3 - x)*Math.tan(theta) +y;
+        yhitOnC2 += randGen.nextGaussian() * counterYcoordResolution;
         
         // Add these coords into the array
         trackOfMuon[nsteps+1][0] = xc1;
         trackOfMuon[nsteps+1][1] = yhitOnC1;
         trackOfMuon[nsteps+2][0] = xc2;
         trackOfMuon[nsteps+2][1] = yhitOnC2;
-        trackofMuon[nsteps+3][0] = xc3;
-        trackofMuon[nsteps+3][0] = yhitOnC3;
+        trackOfMuon[nsteps+3][0] = xc3;
+        trackOfMuon[nsteps+3][0] = yhitOnC3;
         
-        detector1.fill(yhitonC1);
+        detector1.fill(yhitOnC1);
         detector2.fill(yhitOnC2);
         detector3.fill(yhitOnC3);
         
@@ -170,10 +159,10 @@ class TrackMuon
         lookAtThisMuon(nsteps, trackOfMuon, muonEnergy);
         // Now generate the next muon
     }
-        exitE.writeToDisk("M:/muon_exitE.csv");  
-        exitY.writeToDisk("M./muon_exitY.csv");
-        detector1.writeToDisk("M:/muonDetector1.csv");
-        detector2.writeToDisk("M:/muonDetector2.csv");
-        detector3.writeToDisk("M:/muonDetector3.csv");
+        exitE.writeToDisk("muon_exitE.csv");  
+        exitY.writeToDisk("muon_exitY.csv");
+        detector1.writeToDisk("muonDetector1.csv");
+        detector2.writeToDisk("muonDetector2.csv");
+        detector3.writeToDisk("muonDetector3.csv");
   }
 }
