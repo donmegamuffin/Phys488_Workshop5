@@ -97,6 +97,7 @@ class TrackMuon
             
         // Find width of MCS distribution for this muon travelling a distance step through material
         
+        
         double muonMomentum = Math.sqrt(muonEnergy*muonEnergy - muonmass*muonmass);
         // double theta0 = ...
         // smear theta by a Gaussian random angle with mean 0 and sigma=thetaT
@@ -107,6 +108,7 @@ class TrackMuon
         double d = step/Math.cos(theta);
         // energy loss going through d cm of material.
         // ....
+        muonEnergy = muonEnergy - ironEloss.getEnergyLoss(muonMomentum)*d;
 
         if(muonEnergy < muonmass) {
             screen.print("Energy of muon below rest mass - got stuck!");
