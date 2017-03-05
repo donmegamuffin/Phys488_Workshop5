@@ -1,10 +1,10 @@
 #BlueJ class context
-comment0.params=in_Z\ in_A\ in_density\ in_thickness
-comment0.target=MCS(int,\ double,\ double,\ double)
+comment0.params=in_Z\ in_A\ in_density
+comment0.target=MCS(int,\ double,\ double)
 comment1.params=
-comment1.target=double\ X_0()
-comment2.params=particle_momentum
-comment2.target=double\ theta_0(double)
-comment3.params=particle_momentum
-comment3.target=double\ findSigma(double)
+comment1.target=double\ getX_0()
+comment2.params=particle_momentum\ material_thickness
+comment2.target=double\ getTheta0(double,\ double)
+comment3.params=particle_momentum\ material_thickness
+comment3.target=double\ getThetaT(double,\ double)
 numComments=4

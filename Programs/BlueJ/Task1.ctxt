@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ main()
+comment0.text=COPPER\:\r\n\ \ \ \ EnergyLoss\ copperEloss\ \=\ new\ EnergyLoss(29,63.546,8.96);\r\n\ \ \ \ MCS\ copperMS\ \=\ new\ MCS(29,63.546,8.96);\r\n
+numComments=1
