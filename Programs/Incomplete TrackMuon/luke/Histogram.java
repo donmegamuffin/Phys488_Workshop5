@@ -14,14 +14,20 @@ class Histogram
     private double[] error;
     private double[] methods = new double[getSize()+4];
     private int nfilled = 0;
-    private double binCentre;
-   
+    private double[][] trackOfMuon;
+    private double binCentre;   
     private double AtomicNumber;
+    private double ironThickness;
+    private double stepSize;
+    private double xnew;
+    private double ynew;    
     private double AtomicMass;
     private double thickness;
     public double c = 3E8;
+    public double ylast;
     // integer array to store the actual histogram data
     private int[] hist;
+    private double[] histH;
     private int underflow, overflow;
 
     // constructor for the class Histogram
@@ -65,6 +71,7 @@ class Histogram
         hist[bin]++;
     } 
     }
+   
 
     //-------------------------------------
     public int getContent(int nbin)
@@ -155,6 +162,20 @@ class Histogram
       screen.println("Data written to disk in file " + filename);
       return;
     }
+    
+    public void writeToDiskXY(double [] muonenergyXY, double [] ylastE, int nsteps,String filename) throws IOException
+    {
+        FileWriter file = new FileWriter(filename);  
+        PrintWriter outputFile = new PrintWriter(file);        
+       
+        
+        for (int n = 0; n <  muonenergyXY.length; n++) {
+        outputFile.println(n + "," + muonenergyXY [n] + "," + ylastE [n]);
+      }
+      outputFile.close();
+      screen.println("Data written to disk in file " + filename);
+      return;
+    }
   
     public double getbincentre()
     {
@@ -170,6 +191,8 @@ class Histogram
     }
     return (mean + sigma*(sum - 6.0));
     }
+    
+   
     
     
 }
