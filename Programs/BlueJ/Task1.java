@@ -1,3 +1,8 @@
+/* Author: Zachary Humphreys; ID:200951438
+*   Intructions: 
+*   Please input the momentum energies you require into the array lists p1/p2 that you want to console
+*   NOTE: This has only the outputs and properties for IRON baked in (COPPER properties commented out; print code omitted).
+*/
 import java.io.*;
 
 class Task1
@@ -15,7 +20,7 @@ class Task1
     public static void main()
     {
         System.out.println("\nThe values for energy loss:");
-        //Cycles through until it reaches the end of the array of momentums
+        //Cycles through until it reaches the end of the array of momenta values
         for(int n=0;n<p1_array.length;n++)
         {   //This prints out the output wanted from part 1 cycling through the array values to console
             System.out.printf("dE/dx = %.2f",ironEloss.getEnergyLoss(p1_array[n])); //For 2 decimal points

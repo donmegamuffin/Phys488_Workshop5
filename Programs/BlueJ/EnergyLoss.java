@@ -1,3 +1,10 @@
+/*  Authors: Luke Jones, Zachary Humphreys, Lorna Baker
+*   Intructions: 
+*   2 Sets of inputs are required for all of the code to function.
+*   1)The constructor requires 3 material arguments (in order): atomic number, atomic mass, density.
+*   2)The getEnergyLoss method require addition arguments: particle momentum (MeV), and material thickness (cm)
+*/
+
 import java.io.*;
 
 class EnergyLoss

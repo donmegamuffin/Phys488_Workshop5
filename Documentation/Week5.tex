@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{yfonts}
+\usepackage{listings}
+\usepackage{lipsum}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{color}
+	\title{PHYS488: Week5 - Group Tasks introduction}
+	\author{Luke Jones, Lorna Baker, Zachary Humphreys}	
+	\lstdefinestyle{custom}{basicstyle=\tiny,language=java,showspaces=false,showstringspaces=ffalse,tabsize=1,keepspaces=true}
+	\lstset{style=custom}
+\begin{document}
+\maketitle
+\begin{abstract}
+	\begin{center}
+		\textit{}
+	\end{center}
+\end{abstract}
+	
+%Main Body of text in 2Column format
+%\begin{multicols}{2}
+
+\section{Task 1}
+For this task we were tasked with creating 2 classes called \textbf{EnergyLoss} and \textbf{MCS}. The first part was to create a class to calculate energy loss from material and particle parameters, the \textbf{EnergyLoss} class, with the second to create a class to work out the multiple coulomb scattering, \textbf{MCS}.\\\indent This task is designed so that for the instantiation the parameters that are typed in are the only the variables needed to work out the energy loss. The parameters are the: atomic mass, atomic number, and the density of the material. To work out the energy loss the following 2 equations have to be used which are listed equation 1 and 2 where $K$ is a constant equal to $0.07075 MeVcm^{-1}$, $m_{e}$ is the electron rest mass equal to $0.511 MeV$, $I$ is the mean excitation energy equal to $0.0000135*Z MeV$, and as the task was working with muons, $z$ is the muon charge equal to $1$, and $M$ the rest mass equal to $106 MeV$.
+	\begin{align}
+	W_{max}&=\dfrac{2m_e \beta^2 \gamma^2}{1+(2 \gamma m_e)/M+(m_e/M)^2}     \\
+	\langle\dfrac{dE}{dx}\rangle &= Kz^2 \rho \dfrac{Z}{A}  \dfrac{1}{\beta^2} [\dfrac{1}{2} ln(\dfrac{2m_e \beta^2 \gamma^2 W_{max}}{I^2})] 
+	\end{align}
+Using these 2 equations and the parameters which were given on the task sheet, the only parts that need to be worked out are beta and gamma which are both relativistic variables. The equation listed as equation 3 works out the energy of the muon ($E$) which is needed for equation 4 which works out beta(the speed of the particle as a fraction of the speed of light). Equation 5 uses beta to work out Lorentz factor, where P is the momentum of the muon. All other symbols retain their previous meaning.
+	\begin{align}
+	E &= \sqrt{M^2 + P^2} \\
+	\beta &= \dfrac{P}{E} \\
+	\gamma &= \dfrac{1}{\sqrt{1-\beta^2}}
+	\end{align}
+\\ \indent A class file was made which was very similar to the \textit{Histogram.java} in terms of structure used in the previous weeks. The class is called \textbf{EnergyLoss} and the contents first states all the variables used and then has a constructor for the class which is where the parameters go into. Inside the constructor contain code specifying the input values for that instance of the class. After this, a method was made called \textit{getEnergyLoss} which, when the momentum of the muon is inserted, returns the energy loss calculated using the parameters. This method has all the equations needed to work out the energy loss inside it. The code for the class may be found in Appendix A. %TODO Appendixstuff
+\\ \indent The second part of Task 1 now is creating the class MCS which is used to find the angle at which the particles emerges from the material which is called sigma. This class will be done in the same way as the previous task but with different equation and variables. The parameters for the materials in the constructor are the same as before but this time also includes the thickness of the material. The constructor again is used to state the new values for the parameters for the materials specified. There are 3 equations used for sigma are below where equation 6 is to work out the radiation length, equation 7 is to work out $\theta_0$, and equation 8 is to work out sigma. %TODO Rewrite
+	\begin{align}
+	X_0 &\approx \dfrac{716.4A}{\rho Z(Z+1)  \ln{(\frac{287}{\sqrt{Z}})}} \\ 
+	\theta_0 &= \dfrac{13.6 MeV}{\beta P}z\sqrt{\frac{x}{X_0}} \\
+	\theta_t &= \sqrt{2}\theta_0
+	\end{align}
+There are 3 class methods in the class MCS, the first being a class method which is called \textit{X\_0()} and contains equation 6 and returns $X_0$. The next class method is called $\theta_0$(double particle\_momentum) and includes the equations 4 and 7 and uses the previous class method for X\_, and is used to return〖. The last class method is called findsigma(double particle\_momentum) and includes equation 8, 4, and the class method for $\theta_0$, this method is used to return $\theta_t$. The code for this class can be found at the back of the report in the appendix under figure gffdgfagfgfsa. %TODO Rewrite/Appendix
+Now that the 2 classes EnergyLoss and MCS have been made we created a small program which was used to find the energy loss per distance and sigma for various values of momentum for iron. This code first used the instantiation with the parameters of iron with a thickness of 10 cm. This was done for both MCS and EnergyLoss. The code then found both the values using getEnergyLoss() and findSigma() and did this for 6 different momentums. The output for the code can be found in the appendix under figure sfsfeffw. %TODO Rewrite/Appendix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Task 2}
+%\end{multicols}{2}
+\end{document}

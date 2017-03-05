@@ -9,12 +9,13 @@ class MakeHistograms
 
     private static double nearGauss(double mean, double sigma)
     {
-    // add up 12 random numbers
-    double sum = 0.;
-    for (int n = 0 ; n < 12; n++) {
-        sum = sum + randGen.nextDouble();
-    }
-    return (mean + sigma*(sum - 6.0));
+        // add up 12 random numbers
+        double sum = 0.;
+        for (int n = 0 ; n < 12; n++) 
+        {
+            sum = sum + randGen.nextDouble();
+        }
+        return (mean + sigma*(sum - 6.0));
     }
 
     public static void main (String [] args ) throws IOException

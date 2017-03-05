@@ -15,16 +15,16 @@ class Histogram
     // constructor for the class Histogram
     public Histogram(int size, double low, double high)
     {
-    // store the parameters and setup the histogram
-    // note that parameters need to have different names than class variables
-    SIZE = size;
-    binlow = low;
-    binhigh = high;
-
-    binsize = (binhigh - binlow) / (double) SIZE;
-    hist = new int[SIZE];
-    underflow = 0;
-    overflow = 0;
+        // store the parameters and setup the histogram
+        // note that parameters need to have different names than class variables
+        SIZE = size;
+        binlow = low;
+        binhigh = high;
+    
+        binsize = (binhigh - binlow) / (double) SIZE;
+        hist = new int[SIZE];
+        underflow = 0;
+        overflow = 0;
     }
 
     //-------------------------------------
@@ -124,7 +124,7 @@ class Histogram
     //-------------------------------------
     public int getContent(int nbin)
     {
-    // returns the contents on bin 'nbin' to the user
-    return hist[nbin];
+        // returns the contents on bin 'nbin' to the user
+        return hist[nbin];
     }
 }

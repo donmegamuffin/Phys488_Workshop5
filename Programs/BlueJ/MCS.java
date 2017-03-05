@@ -1,8 +1,8 @@
-/* Author: Zachary Humphreys; ID:200951438
+/*  Author: Zachary Humphreys; ID:200951438
 *   Intructions: 
 *   2 Sets of inputs are required for all of the code to function.
-*   1)The constructor requires 4 material arguments (in order): atomic number, atomic mass, density, material thickness
-*   2)The theta/sigma methods require addition particle arguments: particle momentum (MeV), and material thickness (cm)
+*   1)The constructor requires 3 material arguments (in order): atomic number, atomic mass, density.
+*   2)The theta methods require addition arguments: particle momentum (MeV), and material thickness (cm)
 */
 import java.io.*;
 
