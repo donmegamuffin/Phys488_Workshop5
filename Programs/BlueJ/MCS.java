@@ -11,13 +11,14 @@ class MCS
     // Stating Global variables needed for class
     //Constants
     static private final double Rydberg_constant = 13.6;    //MeV
+    static private final double c = 3e8;                    //ms^{-1}
     //Material properties
     private double material_density;                        //gcm^{-3}
     private int    material_Z;
     private double material_A;
     //Particle variables: Taken as constants
-    private final double particle_charge = 1;                     //Coulombs
-    private final double particle_mass = 106;                     //MeV
+    private double particle_charge = 1;                     //Coulombs
+    private double particle_mass = 106;                     //MeV
     
     //Constructor
     public MCS(int in_Z, double in_A, double in_density)

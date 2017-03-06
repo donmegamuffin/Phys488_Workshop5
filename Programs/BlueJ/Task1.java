@@ -12,7 +12,7 @@ class Task1
     //Initialise Materials IRON:
     static EnergyLoss ironEloss = new EnergyLoss(26,55.845,7.87);
     static MCS ironMS = new MCS(26,55.845,7.87);
-    static final double iron_thickness = 1;                        //cm
+    static double iron_thickness = 1;
     /*COPPER:
     EnergyLoss copperEloss = new EnergyLoss(29,63.546,8.96);
     MCS copperMS = new MCS(29,63.546,8.96);
