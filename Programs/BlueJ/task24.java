@@ -87,7 +87,7 @@ class task24
         // Ensure the final step just reaches the end of the iron.
             
         // Find width of MCS distribution for this muon travelling a distance step through material
-         MCS ironMS = new MCS(26,55.845,7.87,step); //MSC for each step
+         MCS ironMS = new MCS(26,55.845,7.87); //MSC for each step
         
         double muonMomentum = Math.sqrt(muonEnergy*muonEnergy - muonmass*muonmass);
         // double theta0 = ...
@@ -96,7 +96,7 @@ class task24
         
         // smear theta by a Gaussian random angle with mean 0 and sigma=thetaT
         // ...
-        theta = theta + randGen.nextGaussian()*ironMS.findSigma(muonMomentum); //new theta after MSC angle 
+        theta = theta + randGen.nextGaussian()*ironMS.getThetaT(muonMomentum, step); //new theta after MSC angle 
 
         // If muon travels at angle theta, amount of material traversed is is d = step/cos(theta) 
         double d = Math.abs(step/Math.cos(theta));
